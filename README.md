@@ -12,7 +12,7 @@ Finally, the save_to_csv function structures the collected tweets into a CSV fil
 The bom_scraper file collects the theater release data needed by fetching it from the OMDb API such as the lifetime revenue, budget and rating  and then appends this information to the original csv found on the dataset found on kaggle titled “Opening Weekend Box Office Performance”. It then cleans up the data by keeping only the relevant columns and saves the updated csv. 
 
 
-**Data Processing & Modeling for Midterm**:<br />
+**Data Processing & Modeling & Preliminary Results for Midterm**:<br />
 Overview:<br />
 The final.py script is designed as of right now to predict the overall performance of the Smile 2. As we progress in the project however, we will allow the user to input their movie of choice. For now we are combining historical movie data and real-time sentiment analysis from social media. Using machine learning, specifically gradient boosting regression, the script produces sentiment scores, budget data, and genre similarity to create a predictive model. This approach allows for the model to capture historical performance patterns and current audience sentiment to provide an accurate revenue estimate.
 						
