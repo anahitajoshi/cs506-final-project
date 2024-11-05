@@ -12,28 +12,28 @@ The bom_scraper file collects the theater release data needed by fetching it fro
 
 
 **Data Processing & Modeling for Midterm**
-Overview:
+Overview:\
 The final.py script is designed as of right now to predict the overall performance of the Smile 2. As we progress in the project however, we will allow the user to input their movie of choice. For now we are combining historical movie data and real-time sentiment analysis from social media. Using machine learning, specifically gradient boosting regression, the script produces sentiment scores, budget data, and genre similarity to create a predictive model. This approach allows for the model to capture historical performance patterns and current audience sentiment to provide an accurate revenue estimate.
 						
-Data Loading and Preparation:			
+Data Loading and Preparation:\		
 The script loads two primary datasets. The first is historical movie dara which contains attributes for various movies, including genres, budgets, and IMDb ratings. The second is social media sentiment data which consists of tweets about the movie “Smile 2” meant to gauge audience sentiment and mood. We set key attributes specific to “Smile 2” such as its budget and primary genres such as horror and thriller. These attributes help to better filter and select comparable movies for analysis.
 						
-Sentiment Analysis on Tweets:					
+Sentiment Analysis on Tweets:\					
 We are using TextBlob which calculates the sentiment polarity for each tweet. It ranges from -1 to 1. 1 means its positive, neutral is 0 and -1 means negative reception. An average sentiment score is derived from the tweets which represents the general public’s view towards “Smile 2”. The average score will later become a very important feature in out prediction model.
 						
-Derived Sentiment for Historical Movies:				
+Derived Sentiment for Historical Movies:\				
 Since the data for the historical movies do not have tweet data, the script assigns them a sentiment score based on their IMDB rating. High rating will be anything higher than 7/5. Mid-ranfe will be 5.5 - 7.5 and low rating will be anything less than 5.5
 						
-Genre Similarity Calculation:
+Genre Similarity Calculation:\
 A genre similarity score is calculated by comparing the genres of each historical movie to “Smile 2”. Movies with overlapping genres receive higher similarity scores. Using data from both the budget and genre similarity, the script filters out the movies that are too dissimilar such as movies with budgets within 50-150% of “Smile 2”’s budget and a genre similarity will be used for further analysis later on.
 						
-Feature Engineering:
+Feature Engineering:\
 The budget is used to compare movies with similar production scales. Genre similarity quantifies the audience overlap with “Smile 2”. Average sentiment captures the real-time public interest in “Smile 2”. Derived sentiment represents sentiment scores based on historical movies. Sentiment-Genre Interactions combines derived sentiment and genre similarity scores ot emphasize genre-specific audience interest.
 						
-Model Training and Evaluation:
+Model Training and Evaluation:\
 We use a Gradient Boosting Regressor due to its strong predictions and it can handle complex, nonlinear relationships. The data is split into training and testing sets and it is trained on the engineering features and evaluated using the test set. We measure the performance using the R-squared score to see how the predicted values align with the actual box office revenues in the test dataset.
 						
-Predicting “Smile 2” Box Office Revenue:
+Predicting “Smile 2” Box Office Revenue:\
 Using the training model, the script predicts the box office revenue for “Smile 2”. The model takes in the movie’s budget, genre similarity, average sentiment score, and sentiment-genre interaction score from the web scarping. The script that predicts the lifetime revenue for the movie based on the mode’s assessment, taking into account its historical performance patterns and real-time public sentiment. 
 
 **Description of Project**
