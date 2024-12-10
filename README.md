@@ -219,7 +219,7 @@ The GitHub workflow (`python-tests.yml`) automates the testing process to ensure
 
 ## Project Demo Video:
 
-(Add the project demo video link or description here.)
+https://youtu.be/rTVn0CohDO8?si=6NupoyTiZJy03wgO
 
 
 ## Predictive Performance:
