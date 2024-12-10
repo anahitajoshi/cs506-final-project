@@ -37,7 +37,22 @@ def test_get_tweet_sentiment():
 
 def test_predict_revenue_for_movie():
     voting_reg, genre_cols, feature_cols = load_model_and_features()
-    all_genres = {"Horror", "Comedy", "Action"}
+    all_genres = {"Horror", "Comedy", "Action"}  # Mock genres
+
+    # Mock feature keys based on genre_cols
+    movie_data = {f"Genre_{g}": 0 for g in all_genres}
+    movie_data.update({"Budget_log": 0, "Derived_Sentiment": 0, "BudgetSentiment": 0})
+
+    # Ensure all genre columns in feature_cols are mocked
+    for col in genre_cols:
+        if col not in movie_data:
+            movie_data[col] = 0
+
+    # Add interaction terms
+    for gc in genre_cols:
+        movie_data[f"Budget_{gc}"] = 0
+
+    # Test with valid inputs
     revenue = predict_revenue_for_movie(
         voting_reg,
         all_genres,
@@ -47,7 +62,7 @@ def test_predict_revenue_for_movie():
         user_derived_sentiment=0.5,
         user_genre="Horror",
     )
-    assert revenue > 0, "Predicted revenue should be greater than zero"
+    assert revenue > 0  # Revenue should be positive for valid inputs
 
 
 def test_extract_tweets_with_sentiments():
