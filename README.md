@@ -238,6 +238,7 @@ This bar chart shows the average lifetime revenue of movies, with each bar repre
 <img src="https://github.com/anahitajoshi/cs506-final-project/blob/main/data_visualizations/4.png?raw=true" width="400" />
 This bar chart shows the top 10 feature importances within the Random Forest model utilized in predicting the lifetime revenue for movies. Each bar is one feature, and the length of the bar corresponds to its importance in making that prediction. The budget log has the most dominant role in predictions, more than budget sentiment, derived sentiments, and budget for specific genres. Budget is a strong predictor of box office revenue, as it often means better production values and wider distribution. The budget sentiment is below the budget log regarding importance, but still meaningful as it shows how the combination of budget and public sentiment is useful for predicting box office success. The budget of genres like action and sci-fi have the most predictive power among all genres. Other genres may have more variable revenue outcomes and are less helpful in predictions based on budget. This visualization helps understand which features are most influential in the model, guiding efforts to improve prediction accuracy or interpretability.
 
+
 NOTE: Further sentiment analysis visualizations are generated based on user input in the interactive web page, please watch project video for demonstration linked below.
 
 
