@@ -36,32 +36,47 @@ This command will:
 - To scrape tweets for sentiment analysis:
 
   1. Navigate to the `scrapers/twitter-scraper` directory
-  2. Create a .env file and add X username and password:
-  ```env
+  2. Create a .env file and add X username and password:   ```env
   TWITTER_USERNAME=username
   TWITTER_PASSWORD=password
-```
+	```
+3. Navigate to `main.ipynb` in the same directory
 
-  2. Run the scraper on the virtual environment with desired parameters:
+  4. Run the scraper on the virtual environment with desired parameters, example:
      ```python
-     python twitter_scraper.py --keyword "MovieName" --count 100
+     USER_UNAME = os.environ['TWITTER_USERNAME']
+USER_PASSWORD = os.environ['TWITTER_PASSWORD']
+
+scraper = Twitter_Scraper(
+    username=USER_UNAME,
+    password=USER_PASSWORD,
+    since_date="2023-10-20",
+    until_date="2023-10-22"
+    # max_tweets=10,
+    # scrape_username="elonmusk",
+    # scrape_hashtag="something",
+    # scrape_query="something",
+    # scrape_latest=False,
+    # scrape_top=True,
+    # scrape_poster_details=True
+)
      ```
-     Replace `MovieName` with the movie title you want to scrape tweets for, and `100` with the desired number of tweets. This will generate a CSV file (`tweets.csv`) in the `tweets` directory.
+
+	 ```python
+     scraper.scrape_tweets(
+    max_tweets=1000,
+    scrape_query="Saltburn",
+    scrape_latest=True,
+)
+```
+5. Once the scraper runs through every block of code, it should generate a csv with the tweets scraped which can be used for training the models as well as the web page later.
 
 ## Step 3: Train the Model and Extract Features
 
 The training process and feature extraction must be run using the provided `final.ipynb` notebook.
 
-1. Activate the virtual environment:
-   ```bash
-   . venv/bin/activate
-   ```
-2. Open the notebook:
-   ```bash
-   jupyter notebook final.ipynb
-   ```
-3. Execute the notebook cells step by step to:
-   - Train models using the historical dataset.
+1. Execute the notebook cells step by step to:
+   - Train models using the historical dataset and tweets scraped.
    - Save the trained model (`model/voting_reg.pkl`) and extracted features (`model/features.pkl`).
 
 These files are critical for enabling the prediction functionality of the web application.
