@@ -43,7 +43,7 @@ This command will:
 	```
 3. Navigate to `main.ipynb` in the same directory
 
-  4. Run the scraper on the virtual environment with desired parameters, example:
+4. Run the scraper on the virtual environment with desired parameters, example:
 
     ```python
 
