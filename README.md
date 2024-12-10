@@ -218,6 +218,7 @@ The GitHub workflow (`python-tests.yml`) automates the testing process to ensure
 # Data Processing and Modeling 
 
 # Visualizations of Data
+![alt text](https://github.com/anahitajoshi/cs506-final-project/blob/main/data_visualizations/1.png?raw=true)
 
 # Results
 
