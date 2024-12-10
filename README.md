@@ -34,16 +34,16 @@ This command will:
 
 ### 2.2 Scraping Tweets
 - To scrape tweets for sentiment analysis:
-  1. Activate the virtual environment:
-     ```bash
-     . venv/bin/activate
-     ```
-  2. Navigate to the `scrapers/twitter-scraper` directory:
-     ```bash
-     cd scrapers/twitter-scraper
-     ```
-  3. Run the scraper with desired parameters:
-     ```bash
+
+  1. Navigate to the `scrapers/twitter-scraper` directory
+  2. Create a .env file and add X username and password:
+  ```env
+  TWITTER_USERNAME=username
+  TWITTER_PASSWORD=password
+```
+
+  2. Run the scraper on the virtual environment with desired parameters:
+     ```python
      python twitter_scraper.py --keyword "MovieName" --count 100
      ```
      Replace `MovieName` with the movie title you want to scrape tweets for, and `100` with the desired number of tweets. This will generate a CSV file (`tweets.csv`) in the `tweets` directory.
