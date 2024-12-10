@@ -7,10 +7,9 @@ Edaad Azman, Jason Anghad, Anahita Joshi, Pavana Manoj, Zac Lan
 **How to Build and Run**:<br />
 
 **Results**:<br />
-Demo: <br />
 Visualizations of data: <br />
 Data processing and modeling: <br />
-Results: <br />
+Results/demo: <br />
 
 
 -----
