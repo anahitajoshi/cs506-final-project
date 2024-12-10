@@ -9,15 +9,12 @@ Edaad Azman, Jason Anghad, Anahita Joshi, Pavana Manoj, Zac Lan
 
 This document provides a step-by-step guide to build, run, and reproduce the results of this project.
 
----
-
 ## Prerequisites
 Ensure you have the following installed:
 - **Python 3.9 or higher**
 - **pip** (Python package manager)
 - **Make** (for running Makefile commands)
 
----
 
 ## Step 1: Install Dependencies
 To set up the environment and install the required dependencies, run the following command:
@@ -29,8 +26,6 @@ make install
 This command will:
 1. Create a Python virtual environment (`venv`).
 2. Install all necessary dependencies listed in `requirements.txt`.
-
----
 
 ## Step 2: Prepare the Datasets
 
@@ -53,8 +48,6 @@ This command will:
      ```
      Replace `MovieName` with the movie title you want to scrape tweets for, and `100` with the desired number of tweets. This will generate a CSV file (`tweets.csv`) in the `tweets` directory.
 
----
-
 ## Step 3: Train the Model and Extract Features
 
 The training process and feature extraction must be run using the provided `final.ipynb` notebook.
@@ -73,8 +66,6 @@ The training process and feature extraction must be run using the provided `fina
 
 These files are critical for enabling the prediction functionality of the web application.
 
----
-
 ## Step 4: Run the Web Application
 
 To start the Flask web application, run:
@@ -87,8 +78,6 @@ This will:
 1. Start the Flask development server at `http://0.0.0.0:5001`.
 2. You can access the web page in your browser at `http://localhost:5001`.
 
----
-
 ## Step 5: Interact with the Application
 
 1. On the webpage, upload the CSV file of tweets (generated in **Step 2.2**) and enter:
@@ -98,8 +87,6 @@ This will:
 2. Click "Submit" to see:
    - The predicted lifetime revenue for the movie.
    - Sentiment analysis of the uploaded tweets.
-
----
 
 ## Step 6: Run Tests
 
@@ -113,7 +100,6 @@ This will:
 1. Execute unit tests for key functionalities, including model loading, sentiment analysis, revenue prediction, and the web application routes.
 2. Verify the robustness and correctness of the application.
 
----
 
 ## Step 7: Clean Up (Optional)
 
@@ -126,8 +112,6 @@ make clean
 This will:
 1. Delete the `venv` directory.
 2. Remove all `.pyc` files in the project.
-
----
 
 ## Summary of Commands
 | Command           | Description                                      |
