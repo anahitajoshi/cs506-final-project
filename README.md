@@ -3,13 +3,16 @@ Edaad Azman, Jason Anghad, Anahita Joshi, Pavana Manoj, Zac Lan
 
 **Final**
 **Project Details**:<br />
+...<br />
+Approach: <br />
+Data importance, acquisition, & processing: <br />
+Data modeling: <br />
+Visualizations of data: <br />
 
 **How to Build and Run**:<br />
 
 **Results**:<br />
-Visualizations of data: <br />
-Data processing and modeling: <br />
-Results/demo: <br />
+
 
 
 -----
