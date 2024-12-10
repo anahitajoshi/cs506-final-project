@@ -36,7 +36,8 @@ This command will:
 - To scrape tweets for sentiment analysis:
 
   1. Navigate to the `scrapers/twitter-scraper` directory
-  2. Create a .env file and add X username and password:   ```env
+  2. Create a .env file and add X username and password:   
+  ```env
   TWITTER_USERNAME=username
   TWITTER_PASSWORD=password
 	```
@@ -60,15 +61,14 @@ scraper = Twitter_Scraper(
     # scrape_top=True,
     # scrape_poster_details=True
 )
-     ```
-
-	 ```python
+```
+```python
      scraper.scrape_tweets(
     max_tweets=1000,
     scrape_query="Saltburn",
     scrape_latest=True,
 )
-```
+	```
 5. Once the scraper runs through every block of code, it should generate a csv with the tweets scraped which can be used for training the models as well as the web page later.
 
 ## Step 3: Train the Model and Extract Features
