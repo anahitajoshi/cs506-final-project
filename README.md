@@ -215,6 +215,10 @@ The GitHub workflow (`python-tests.yml`) automates the testing process to ensure
   - Outputs a detailed report of test results.
   - If any test fails, the workflow stops, alerting the developer to fix the issue before proceeding.
 
+# Data Processing and Modeling 
+
+# Visualizations of Data
+
 # Results
 
 ## Project Demo Video:
@@ -280,9 +284,3 @@ While the initial demonstration focused on a specific movie, the final implement
 4. A distribution plot of sentiment scores, showcasing the number of tweets in each range.
 
 By achieving these deliverables, we fulfilled our original goal of predicting box office revenue from early sentiment and metadata.
-
-
-**Results**:<br />
-Visualizations of data: <br />
-Data processing and modeling: <br />
-Results/demo: <br />
