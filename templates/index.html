@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Movie Revenue Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="#">Movie Revenue Predictor</a>
+    </div>
+
+    <div class="container">
+        <h1>Predict Movie Box Office Performance</h1>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div class="alert" role="alert">
+            <ul class="mb-0">
+                {% for category, message in messages %}
+                <li><strong>{{ category }}:</strong> {{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        {% endwith %}
+
+        <form method="POST" enctype="multipart/form-data">
+            <label>Movie Name:</label>
+            <input type="text" name="movie_name" required>
+
+            <label>Budget (USD):</label>
+            <input type="text" name="budget" required>
+
+            <label>Primary Genre:</label>
+            <input type="text" name="genre" required>
+
+            <label>Upload Tweets CSV:</label>
+            <input type="file" name="tweets_csv" accept=".csv" required>
+
+            <input type="submit" value="Predict">
+        </form>
+    </div>
+</body>
+
+</html>

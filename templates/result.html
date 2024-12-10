@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="{{ url_for('index') }}">Movie Revenue Predictor</a>
+    </div>
+
+    <div class="container">
+        <h1>Prediction Result</h1>
+        <div class="result-card">
+            <p><strong>Movie Name:</strong> {{ movie_name }}</p>
+            <p><strong>Genre:</strong> {{ genre }}</p>
+            <p><strong>Budget:</strong> ${{ budget }}</p>
+            <p><strong>Sentiment Score:</strong> {{ sentiment_score }}</p>
+            <h2><strong>Predicted Box Office:</strong> ${{ predicted_revenue|round(2) }}</h2>
+        </div>
+
+        <!-- Tweets and Sentiment Table -->
+        <div class="tweets-container">
+            <h2>Sample Tweets and Sentiments</h2>
+            <div class="scrollable-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tweet</th>
+                            <th>Sentiment Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for tweet in tweets_with_sentiments %}
+                        <tr>
+                            <td>{{ tweet['Content'] }}</td>
+                            <td>{{ tweet['Sentiment'] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Sentiment Distribution Plot -->
+        <div class="sentiment-chart-container">
+            <h2>Sentiment Distribution</h2>
+            <canvas id="sentimentChart"></canvas>
+        </div>
+
+        <div class="mt-4">
+            <a href="{{ url_for('index') }}" class="btn-secondary">Go Back</a>
+        </div>
+    </div>
+
+    <script type="application/json" id="sentimentData">
+        {{ sentiment_scores | tojson }}
+    </script>
+
+    <script>
+        const sentimentScores = JSON.parse(document.getElementById("sentimentData").textContent);
+        const ctx = document.getElementById('sentimentChart').getContext('2d');
+
+        const bins = [-1, -0.75, -0.5, -0.25, 0, 0.25, 0.5, 0.75, 1];
+        const counts = new Array(bins.length - 1).fill(0);
+
+        sentimentScores.forEach(score => {
+            for (let i = 0; i < bins.length - 1; i++) {
+                if (score >= bins[i] && score < bins[i + 1]) {
+                    counts[i]++;
+                    break;
+                }
+            }
+        });
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: bins.slice(0, -1).map((b, i) => `${b} to ${bins[i + 1]}`),
+                datasets: [{
+                    label: 'Tweet Sentiment Count',
+                    data: counts,
+                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Sentiment Range'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Number of Tweets'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
