@@ -143,6 +143,72 @@ This will:
 
 By following these steps, you will successfully build, run, and interact with the project to reproduce the results.
 
+# Testing Overview
+
+## Tests Included
+
+### `test_pipeline.py`:
+
+**Purpose:**
+To test the core functionalities of the `pipeline.py` module, which handles model loading, sentiment analysis, revenue prediction, and data extraction.
+
+**Tests:**
+
+- **`test_load_model_and_features`**:
+  - Validates that the model, genre columns, and feature columns are loaded correctly.
+  - Ensures the pipeline can access the necessary components for prediction.
+
+- **`test_get_tweet_sentiment`**:
+  - Tests the sentiment analysis process on mock tweets.
+  - Ensures the mean sentiment and sentiment list are computed correctly.
+
+- **`test_predict_revenue_for_movie`**:
+  - Validates the revenue prediction process.
+  - Ensures correct mapping of features and interactions based on user input.
+
+- **`test_extract_tweets_with_sentiments`**:
+  - Tests the extraction of sample tweets and their sentiment scores.
+  - Verifies that the correct number of tweets is extracted and that sentiment scores are included.
+
+### `test_app.py`:
+
+**Purpose:**
+To test the Flask application (`app.py`) for its ability to handle GET and POST requests.
+
+**Tests:**
+
+- **`test_index_get`**:
+  - Ensures the index page is accessible via a GET request.
+  - Validates a 200 OK response for the landing page.
+
+- **`test_index_post`**:
+  - Tests the submission of user input (movie name, budget, genre, tweets CSV) via a POST request.
+  - Ensures the result page is rendered correctly after submission.
+  - Simulates the full workflow: input data → sentiment analysis → revenue prediction → rendering of the result.
+
+
+## GitHub Workflow Overview
+
+The GitHub workflow (`python-tests.yml`) automates the testing process to ensure code quality and functionality in a continuous integration/continuous deployment (CI/CD) pipeline.
+
+### Key Steps in the Workflow:
+
+- **Trigger Conditions:**
+  - The workflow runs on any `push` or `pull_request` event to the `main` branch.
+  - Ensures that any new code or changes are automatically tested before merging.
+
+- **Environment Setup:**
+  - Sets up a Python 3.9 environment.
+  - Creates a virtual environment (`venv`), installs dependencies from `requirements.txt`, and upgrades `pip`.
+
+- **Test Execution:**
+  - Configures the `PYTHONPATH` to include the project directory.
+  - Runs all tests in the `tests/` directory using `pytest`.
+
+- **Result Handling:**
+  - Outputs a detailed report of test results.
+  - If any test fails, the workflow stops, alerting the developer to fix the issue before proceeding.
+
 
 **Results**:<br />
 Visualizations of data: <br />
@@ -150,7 +216,6 @@ Data processing and modeling: <br />
 Results/demo: <br />
 
 
------
 **Midterm Progress Demo Video Link**:<br />
 https://www.youtube.com/watch?v=HUV24do8u14
 
