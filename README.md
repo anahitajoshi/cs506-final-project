@@ -62,6 +62,7 @@ This command will:
 		# scrape_poster_details=True
 	)
 	```
+5. Example for running the custom query and max tweets:
 	```python
     scraper.scrape_tweets(
     max_tweets=1000,
