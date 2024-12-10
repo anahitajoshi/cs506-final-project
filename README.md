@@ -221,14 +221,12 @@ The GitHub workflow (`python-tests.yml`) automates the testing process to ensure
 
 (Add the project demo video link or description here.)
 
----
 
 ## Predictive Performance:
 
 - We calculated the **R² score** on a test set split after training.
 - Any positive R² indicates some predictive capability. With optimization, we achieved a reasonable R² score (**>0.5** in some trial runs), indicating that the model can partially explain the variance in revenue outcomes based on budget, genre, and sentiment features.
 
----
 
 ## From Scraper to Notebook to Interactive Web Page:
 
@@ -244,7 +242,6 @@ The GitHub workflow (`python-tests.yml`) automates the testing process to ensure
    - The Flask application takes user inputs (movie name, budget, genre, and tweets CSV) and predicts box office revenue.
    - It loads the trained model and features, reconstructs the genre encoding logic, and performs feature engineering to make predictions.
 
----
 
 ## Significance:
 
@@ -266,7 +263,6 @@ This pipeline demonstrates the **full data science lifecycle**, including:
    - Providing a user-friendly interface for real-time predictions.
    - Visualizing results with tables and distribution plots for better interpretability.
 
----
 
 ## Achievements:
 
