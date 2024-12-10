@@ -1,6 +1,18 @@
 # CS 506 Final Project
 Edaad Azman, Jason Anghad, Anahita Joshi, Pavana Manoj, Zac Lan
 
+**Final**
+**Project Details**:<br />
+
+**How to Build and Run**:<br />
+
+**Results**:<br />
+Visualizations of data: <br />
+Data processing and modeling: <br />
+Results/demo: <br />
+
+
+-----
 **Midterm Progress Demo Video Link**:<br />
 https://www.youtube.com/watch?v=HUV24do8u14
 
