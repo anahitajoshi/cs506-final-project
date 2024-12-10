@@ -266,7 +266,7 @@ This pipeline demonstrates the **full data science lifecycle**, including:
 
 ## Achievements:
 
-While the initial demonstration focused on "Smile 2," the final implementation generalizes to any movie for which the user can provide:
+While the initial demonstration focused on a specific movie, the final implementation generalizes to any movie for which the user can provide:
 
 - **A CSV of tweets** (to derive sentiment).
 - **A budget value**.
