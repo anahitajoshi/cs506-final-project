@@ -44,30 +44,30 @@ This command will:
 3. Navigate to `main.ipynb` in the same directory
 
   4. Run the scraper on the virtual environment with desired parameters, example:
-     ```python
-     USER_UNAME = os.environ['TWITTER_USERNAME']
-USER_PASSWORD = os.environ['TWITTER_PASSWORD']
+    ```python
+    USER_UNAME = os.environ['TWITTER_USERNAME']
+	USER_PASSWORD = os.environ['TWITTER_PASSWORD']
 
-scraper = Twitter_Scraper(
-    username=USER_UNAME,
-    password=USER_PASSWORD,
-    since_date="2023-10-20",
-    until_date="2023-10-22"
-    # max_tweets=10,
-    # scrape_username="elonmusk",
-    # scrape_hashtag="something",
-    # scrape_query="something",
-    # scrape_latest=False,
-    # scrape_top=True,
-    # scrape_poster_details=True
-)
-```
-```python
-     scraper.scrape_tweets(
+	scraper = Twitter_Scraper(
+		username=USER_UNAME,
+		password=USER_PASSWORD,
+		since_date="2023-10-20",
+		until_date="2023-10-22"
+		# max_tweets=10,
+		# scrape_username="elonmusk",
+		# scrape_hashtag="something",
+		# scrape_query="something",
+		# scrape_latest=False,
+		# scrape_top=True,
+		# scrape_poster_details=True
+	)
+	```
+	```python
+    scraper.scrape_tweets(
     max_tweets=1000,
     scrape_query="Saltburn",
     scrape_latest=True,
-)
+	)
 	```
 5. Once the scraper runs through every block of code, it should generate a csv with the tweets scraped which can be used for training the models as well as the web page later.
 
