@@ -4,10 +4,7 @@ Edaad Azman, Jason Anghad, Anahita Joshi, Pavana Manoj, Zac Lan
 **Final**
 **Project Details**:<br />
 
-**How to Build and Run**:<br />
 # Instructions to Build and Run the Project
-
-This document provides a step-by-step guide to build, run, and reproduce the results of this project.
 
 ## Prerequisites
 Ensure you have the following installed:
@@ -82,7 +79,8 @@ This command will:
 
 The training process and feature extraction must be run using the provided `final.ipynb` notebook.
 
-1. Execute the notebook cells step by step to:
+1. Execute the notebook cells step by step:
+   - Run the notebook in the virtual environment. 
    - Train models using the historical dataset and tweets scraped.
    - Save the trained model (`model/voting_reg.pkl`) and extracted features (`model/features.pkl`).
 
