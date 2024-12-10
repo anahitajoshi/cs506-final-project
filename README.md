@@ -1,9 +1,6 @@
 # CS 506 Final Project
 Edaad Azman, Jason Anghad, Anahita Joshi, Pavana Manoj, Zac Lan
 
-**Final**
-**Project Details**:<br />
-
 # Instructions to Build and Run the Project
 
 ## Prerequisites
