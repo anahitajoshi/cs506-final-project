@@ -3,6 +3,8 @@ Edaad Azman, Jason Anghad, Anahita Joshi, Pavana Manoj, Zac Lan
 
 # Project Overview 
 
+**PROJECT DEMO VIDEO INCLUDED IN RESULTS SECTION**
+
 **Description of Project**
 - The project aims to predict the box office performance of a movie by analyzing both public sentiment and engagement metrics related to its trailer. Public discussions, particularly on platforms like YouTube and Twitter, generate valuable data on how audiences react to trailers. By combining sentiment analysis with engagement indicators (e.g., comment volume, likes, view count), we aim to create a model that estimates a movie's box office earnings within a short time frame after the trailer release.
 
