@@ -217,66 +217,145 @@ The GitHub workflow (`python-tests.yml`) automates the testing process to ensure
   - Outputs a detailed report of test results.
   - If any test fails, the workflow stops, alerting the developer to fix the issue before proceeding.
 
-# Data Processing and Modeling 
+# Data Collection, Processing, and Modeling 
 
-### Feature Engineering 
+## Twitter Data:
+For our preliminary data collection, we focused on scraping Twitter using Selenium for specific movies. We used a WebDriver to automate scrolling on the Twitter webpage. The "Tweet" information gathered includes:
 
-Below are certain features that we have engineered while doing the data cleaning & processing.
+- Username
+- Handle
+- Actual tweet content
+- Hashtags
+- Mentions
+- Tweet link
 
-- **Numeric Conversion:**
-	- We stripped $ and commas from Lifetime_Revenue and converted it to a float.
-- **Rating to Sentiment:**
-	- IMDB ratings (0-10 scale) were normalized to a 0-1 range by dividing by 10, creating a Derived_Sentiment feature.
--**Genre Encoding:**
-   	- We parsed the Genre column, splitting by commas and creating one-hot encoded columns Genre_Action, Genre_Horror, etc.
-- **Feature Interactions:**
-	- We introduced interaction terms like BudgetSentiment (Budget_log * Derived_Sentiment) and Budget_{Genre} interactions to capture more nuanced relationships.
+This information is stored in a CSV file containing all tweets that match the search criteria.
 
-We also changed the library we utilized for sentiment analysis from TextBlob to VADER. This is because TextBlob had limitations in its performance and was not optimized for social media tweets that could hold much more nuanced and sarcastic content than regular text. VADER was specifically designed for analyzing sentiment on social media sites and provides a much more nuanced and granular scoring for sentiment analysis as compared to Textblob. This allows us to add more predictive power to our models as we are more able to accurately determine that actual sentiment between the tweets that we have in our dataset. 
+### Scraping Process:
+The `Twitter_Scraper` class was designed to:
 
-### Models Used and Analysis
+1. **Set Up a WebDriver:** Automate browsing and scrolling on Twitter.
+2. **Log In:** Includes error handling for login steps (e.g., entering username/password, handling CAPTCHA).
+3. **Search and Gather Data:** Use search parameters like username, hashtag, or query to scrape tweets.
+4. **Save Data:** Organize tweets with metadata like likes, retweets, and timestamp into a CSV file for further analysis.
 
-#### RandomForestRegressor
-**Strengths:**  
-- Easy to use with minimal tuning.  
-- Can handle both numerical and categorical data.
+### Example:
+We configured the scraper with the query "Extraction 2" and a date range. The resulting data includes metrics such as likes and retweets, saved in a structured CSV for further analysis.
 
-**Weaknesses:**  
-- Could possibly overfit on noisy data or small datasets if parameters are not tuned.
+## Box Office Data:
+We collected theater release data using the OMDb API via a `bom_scraper.py` script. This script:
 
-**Hyperparameters Tuned:**  
-- `n_estimators`, `max_depth`
+1. **Initial Dataset:** Enriched the Kaggle dataset "Opening Weekend Box Office Performance" with additional columns such as lifetime revenue, budget, and rating.
+2. **Cleaned Data:** Kept only relevant columns for analysis and saved the updated CSV as `historical_movies.csv`.
 
-#### GradientBoostingRegressor
-**Strengths:**  
-- Strong performance on structured/tabular data.  
-- Flexible to model various relationships with fine-tuning.
+---
 
-**Weaknesses:**  
-- Computationally intensive.  
-- Sensitive to hyperparameter choices.
+# Historical Data
 
-**Hyperparameters Tuned:**  
-- `n_estimators`, `learning_rate`
+## Box Office and Movie Metadata:
+We used the `data/historical_movies.csv` dataset, containing:
 
-##### XGBoostRegressor
-**Strengths:**  
-- Highly efficient and scalable.  
-- In-built regularization for preventing overfitting.
+- Titles
+- Budgets
+- Genres
+- IMDB Ratings
+- Lifetime Revenues
 
-**Weaknesses:**  
-- Complexity in tuning hyperparameters.
+The dataset was enriched using the `bom_scraper.py` script for budget, rating, and genre data.
 
-**Hyperparameters Tuned:**  
-- `n_estimators`, `learning_rate`
+## Tweet Data (Sentiment Source):
+The Twitter scraper (`twitter-scraper` directory) collected tweets about target movies. The scraping process included:
 
-#### Approach
-- For each model, we wrapped it in a pipeline with a `StandardScaler` and performed hyperparameter tuning using `GridSearchCV`.  
-- We then combined the best models into a `VotingRegressor` ensemble to leverage their combined predictive power.  
-- Hyperparameter tuning was conducted on all models using grid search with a 5-fold cross-validation to identify the best combination of parameters.  
+- Logging into Twitter and collecting tweets by query, hashtag, or username.
+- Using the `vaderSentiment` library to compute a sentiment score for each tweet.
+- Aggregating an average sentiment score for all tweets to represent public reaction to the movie.
 
-#### Results
-By combining feature engineering, ensemble modeling, and cross-validation, we achieved a strong **R² score (~0.5)**. This score represents how closely the model predictions align with the actual values.
+---
+
+# Data Cleaning & Feature Engineering
+
+1. **Numeric Conversion:**
+   - Stripped `$` and commas from `Lifetime_Revenue` and converted to float.
+   
+2. **Rating to Sentiment:**
+   - IMDB ratings (0-10 scale) were normalized to a 0-1 range by dividing by 10.
+   - Created a `Derived_Sentiment` feature.
+
+3. **Genre Encoding:**
+   - Parsed the `Genre` column and split it by commas.
+   - Created one-hot encoded columns for each genre (e.g., `Genre_Action`, `Genre_Horror`).
+
+4. **Feature Interactions:**
+   - Added interaction terms like `BudgetSentiment` (`Budget_log * Derived_Sentiment`).
+   - Added `Budget_{Genre}` interactions to capture nuanced relationships.
+
+### Sentiment Analysis:
+We switched from `TextBlob` to `VADER` for better performance on social media data. VADER provides granular sentiment scoring, especially for nuanced or sarcastic tweets, making it ideal for this dataset.
+
+---
+
+# Modeling
+
+## Models Used:
+
+### RandomForestRegressor
+- **Strengths:**
+  - Easy to use with minimal tuning.
+  - Handles numerical and categorical data effectively.
+- **Weaknesses:**
+  - May overfit on noisy or small datasets without proper tuning.
+- **Hyperparameters Tuned:**
+  - `n_estimators`, `max_depth`
+
+### GradientBoostingRegressor
+- **Strengths:**
+  - Strong performance on structured/tabular data.
+  - Flexible for modeling complex relationships.
+- **Weaknesses:**
+  - Computationally intensive and sensitive to hyperparameters.
+- **Hyperparameters Tuned:**
+  - `n_estimators`, `learning_rate`
+
+### XGBoostRegressor
+- **Strengths:**
+  - Highly efficient and scalable.
+  - In-built regularization to prevent overfitting.
+- **Weaknesses:**
+  - Complex hyperparameter tuning.
+- **Hyperparameters Tuned:**
+  - `n_estimators`, `learning_rate`
+
+## Workflow:
+
+1. **Pipeline Integration:**
+   - Wrapped models with `StandardScaler` in a pipeline.
+   - Used `GridSearchCV` for hyperparameter tuning.
+
+2. **Voting Regressor Ensemble:**
+   - Combined the best models into a `VotingRegressor` to leverage collective predictive power.
+
+3. **Cross-Validation:**
+   - Performed K-fold cross-validation (K=5) to identify the best hyperparameter combinations.
+
+### Outcome:
+Achieved a strong R² score (~0.5), indicating that the model explains a significant portion of variance in revenue outcomes.
+
+---
+
+# Saving the Model and Features
+
+1. **Saved Files:**
+   - `voting_reg.pkl`: The trained VotingRegressor model.
+   - `features.pkl`: A dictionary containing `genre_cols` and `feature_cols` for consistent feature engineering.
+
+2. **Deployment:**
+   - These files are stored in the `model/` directory.
+   - Used by the Flask app to predict results based on user inputs without retraining the model.
+
+### Importance:
+Storing the trained model and features ensures:
+- Faster predictions during deployment.
+- Reusability of the pipeline without additional computational overhead.
 
 # Visualizations of Data
 <img src="https://github.com/anahitajoshi/cs506-final-project/blob/main/data_visualizations/1.png?raw=true" width="400" />
