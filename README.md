@@ -234,9 +234,9 @@ Below are certain features that we have engineered while doing the data cleaning
 
 We also changed the library we utilized for sentiment analysis from TextBlob to VADER. This is because TextBlob had limitations in its performance and was not optimized for social media tweets that could hold much more nuanced and sarcastic content than regular text. VADER was specifically designed for analyzing sentiment on social media sites and provides a much more nuanced and granular scoring for sentiment analysis as compared to Textblob. This allows us to add more predictive power to our models as we are more able to accurately determine that actual sentiment between the tweets that we have in our dataset. 
 
-## Models Used and Analysis
+### Models Used and Analysis
 
-### RandomForestRegressor
+#### RandomForestRegressor
 **Strengths:**  
 - Easy to use with minimal tuning.  
 - Can handle both numerical and categorical data.
@@ -247,9 +247,7 @@ We also changed the library we utilized for sentiment analysis from TextBlob to 
 **Hyperparameters Tuned:**  
 - `n_estimators`, `max_depth`
 
----
-
-### GradientBoostingRegressor
+#### GradientBoostingRegressor
 **Strengths:**  
 - Strong performance on structured/tabular data.  
 - Flexible to model various relationships with fine-tuning.
@@ -261,9 +259,7 @@ We also changed the library we utilized for sentiment analysis from TextBlob to 
 **Hyperparameters Tuned:**  
 - `n_estimators`, `learning_rate`
 
----
-
-### XGBoostRegressor
+##### XGBoostRegressor
 **Strengths:**  
 - Highly efficient and scalable.  
 - In-built regularization for preventing overfitting.
@@ -274,14 +270,12 @@ We also changed the library we utilized for sentiment analysis from TextBlob to 
 **Hyperparameters Tuned:**  
 - `n_estimators`, `learning_rate`
 
----
-
-### Approach
+#### Approach
 - For each model, we wrapped it in a pipeline with a `StandardScaler` and performed hyperparameter tuning using `GridSearchCV`.  
 - We then combined the best models into a `VotingRegressor` ensemble to leverage their combined predictive power.  
 - Hyperparameter tuning was conducted on all models using grid search with a 5-fold cross-validation to identify the best combination of parameters.  
 
-### Results
+#### Results
 By combining feature engineering, ensemble modeling, and cross-validation, we achieved a strong **R² score (~0.5)**. This score represents how closely the model predictions align with the actual values.
 
 # Visualizations of Data
