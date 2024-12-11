@@ -219,6 +219,54 @@ The GitHub workflow (`python-tests.yml`) automates the testing process to ensure
 
 # Data Processing and Modeling 
 
+### Feature Engineering 
+
+Below are certain features that we have engineered while doing the data cleaning & processing.
+
+- **Numeric Conversion:**
+	- We stripped $ and commas from Lifetime_Revenue and converted it to a float.
+- **Rating to Sentiment:**
+	- IMDB ratings (0-10 scale) were normalized to a 0-1 range by dividing by 10, creating a Derived_Sentiment feature.
+-**Genre Encoding:**
+   	- We parsed the Genre column, splitting by commas and creating one-hot encoded columns Genre_Action, Genre_Horror, etc.
+- **Feature Interactions:**
+	- We introduced interaction terms like BudgetSentiment (Budget_log * Derived_Sentiment) and Budget_{Genre} interactions to capture more nuanced relationships.
+
+We also changed the library we utilized for sentiment analysis from TextBlob to VADER. This is because TextBlob had limitations in its performance and was not optimized for social media tweets that could hold much more nuanced and sarcastic content than regular text. VADER was specifically designed for analyzing sentiment on social media sites and provides a much more nuanced and granular scoring for sentiment analysis as compared to Textblob. This allows us to add more predictive power to our models as we are more able to accurately determine that actual sentiment between the tweets that we have in our dataset. 
+
+### Modeling 
+We tried three models:
+- **RandomForestRegressor**
+Strengths: 
+Easy to use with minimal tuning.
+Can handle both numerical and categorical data.
+Weaknesses: 
+Could possibly overfit on noisy data or small datasets if parameter tuning.
+Hyperparameters Tuned: 
+n_estimators, max_depth 
+GradientBoostingRegressor
+Strengths: 
+Strong performance on structured/tabular data.
+Flexible to model various relationships with fine-tuning.
+Weaknesses: 
+Computationally intensive and sensitive to hyperparameter choices.
+Hyperparameters Tuned: 
+N_estimators, learning_rate
+XGBoostRegressor
+Strengths: 
+Highly efficient and scalable.
+In-built regularization for preventing overfitting.
+Weaknesses:
+Complexity in tuning hyperparameters.
+Hyperparameters Tuned: 
+N_estimators, learning_rate
+For each model, we wrapped it in a pipeline with a StandardScaler and performed hyperparameter tuning using GridSearchCV.
+We then combined the best models into a VotingRegressor ensemble to leverage their combined predictive power.
+We also did some hyperparameter tuning on all of the models while using grid search with a K-fold of 5 to identify the best combination of parameters.
+By combining all these factors of using feature engineering, ensemble modelling and cross-validation, we were able to achieve a strong R^2 score (~0.5). This score represents how closely the model predictions align with the actual values. 
+
+
+
 # Visualizations of Data
 <img src="https://github.com/anahitajoshi/cs506-final-project/blob/main/data_visualizations/1.png?raw=true" width="400" />
 The scatter plot shows a positive correlation between derived sentiment (0-1 scale, higher indicating more positive audience sentiment) and lifetime revenue (logarithmically scaled), suggesting that movies with higher sentiment often generate greater box office revenue. Most data points cluster in the mid-range of sentiment (0.4–0.7) and lower revenue, indicating the majority of movies fall within these ranges. However, outliers with moderate sentiment (around 0.5–0.6) achieving high revenue suggest additional factors like budget or franchise popularity significantly impact earnings. While sentiment appears influential, it is not the sole predictor of revenue.<br/><br/>
