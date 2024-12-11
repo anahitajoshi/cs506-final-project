@@ -237,14 +237,14 @@ We also changed the library we utilized for sentiment analysis from TextBlob to 
 ### Modeling 
 We tried three models:
 - **RandomForestRegressor**
-Strengths: 
-Easy to use with minimal tuning.
-Can handle both numerical and categorical data.
-Weaknesses: 
-Could possibly overfit on noisy data or small datasets if parameter tuning.
-Hyperparameters Tuned: 
-n_estimators, max_depth 
-GradientBoostingRegressor
+	-Strengths: 
+		-Easy to use with minimal tuning.
+		-Can handle both numerical and categorical data.
+	-Weaknesses: 
+		-Could possibly overfit on noisy data or small datasets if parameter tuning.
+	-Hyperparameters Tuned: 
+		-n_estimators, max_depth 
+-**GradientBoostingRegressor**
 Strengths: 
 Strong performance on structured/tabular data.
 Flexible to model various relationships with fine-tuning.
