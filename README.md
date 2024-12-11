@@ -252,24 +252,6 @@ We collected theater release data using the OMDb API via a `bom_scraper.py` scri
 1. **Initial Dataset:** Enriched the Kaggle dataset "Opening Weekend Box Office Performance" with additional columns such as lifetime revenue, budget, and rating.
 2. **Cleaned Data:** Kept only relevant columns for analysis and saved the updated CSV as `historical_movies.csv`.
 
-## Box Office and Movie Metadata:
-We used the `data/historical_movies.csv` dataset, containing:
-
-- Titles
-- Budgets
-- Genres
-- IMDB Ratings
-- Lifetime Revenues
-
-The dataset was enriched using the `bom_scraper.py` script for budget, rating, and genre data.
-
-## Tweet Data (Sentiment Source):
-The Twitter scraper (`twitter-scraper` directory) collected tweets about target movies. The scraping process included:
-
-- Logging into Twitter and collecting tweets by query, hashtag, or username.
-- Using the `vaderSentiment` library to compute a sentiment score for each tweet.
-- Aggregating an average sentiment score for all tweets to represent public reaction to the movie.
-
 # Data Cleaning & Feature Engineering
 
 1. **Numeric Conversion:**
