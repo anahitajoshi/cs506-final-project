@@ -252,7 +252,7 @@ We collected theater release data using the OMDb API via a `bom_scraper.py` scri
 1. **Initial Dataset:** Enriched the Kaggle dataset "Opening Weekend Box Office Performance" with additional columns such as lifetime revenue, budget, and rating.
 2. **Cleaned Data:** Kept only relevant columns for analysis and saved the updated CSV as `historical_movies.csv`.
 
-# Data Cleaning & Feature Engineering
+## Data Cleaning & Feature Engineering
 
 1. **Numeric Conversion:**
    - Stripped `$` and commas from `Lifetime_Revenue` and converted to float.
@@ -272,7 +272,7 @@ We collected theater release data using the OMDb API via a `bom_scraper.py` scri
 ### Sentiment Analysis:
 We switched from `TextBlob` to `VADER` for better performance on social media data. VADER provides granular sentiment scoring, especially for nuanced or sarcastic tweets, making it ideal for this dataset.
 
-# Modeling
+## Modeling
 
 ## Models Used:
 
