@@ -234,38 +234,55 @@ Below are certain features that we have engineered while doing the data cleaning
 
 We also changed the library we utilized for sentiment analysis from TextBlob to VADER. This is because TextBlob had limitations in its performance and was not optimized for social media tweets that could hold much more nuanced and sarcastic content than regular text. VADER was specifically designed for analyzing sentiment on social media sites and provides a much more nuanced and granular scoring for sentiment analysis as compared to Textblob. This allows us to add more predictive power to our models as we are more able to accurately determine that actual sentiment between the tweets that we have in our dataset. 
 
-### Modeling 
-We tried three models:
-- **RandomForestRegressor**
-	-Strengths: 
-		-Easy to use with minimal tuning.
-		-Can handle both numerical and categorical data.
-	-Weaknesses: 
-		-Could possibly overfit on noisy data or small datasets if parameter tuning.
-	-Hyperparameters Tuned: 
-		-n_estimators, max_depth 
--**GradientBoostingRegressor**
-Strengths: 
-Strong performance on structured/tabular data.
-Flexible to model various relationships with fine-tuning.
-Weaknesses: 
-Computationally intensive and sensitive to hyperparameter choices.
-Hyperparameters Tuned: 
-N_estimators, learning_rate
-XGBoostRegressor
-Strengths: 
-Highly efficient and scalable.
-In-built regularization for preventing overfitting.
-Weaknesses:
-Complexity in tuning hyperparameters.
-Hyperparameters Tuned: 
-N_estimators, learning_rate
-For each model, we wrapped it in a pipeline with a StandardScaler and performed hyperparameter tuning using GridSearchCV.
-We then combined the best models into a VotingRegressor ensemble to leverage their combined predictive power.
-We also did some hyperparameter tuning on all of the models while using grid search with a K-fold of 5 to identify the best combination of parameters.
-By combining all these factors of using feature engineering, ensemble modelling and cross-validation, we were able to achieve a strong R^2 score (~0.5). This score represents how closely the model predictions align with the actual values. 
+## Models Used and Analysis
 
+### RandomForestRegressor
+**Strengths:**  
+- Easy to use with minimal tuning.  
+- Can handle both numerical and categorical data.
 
+**Weaknesses:**  
+- Could possibly overfit on noisy data or small datasets if parameters are not tuned.
+
+**Hyperparameters Tuned:**  
+- `n_estimators`, `max_depth`
+
+---
+
+### GradientBoostingRegressor
+**Strengths:**  
+- Strong performance on structured/tabular data.  
+- Flexible to model various relationships with fine-tuning.
+
+**Weaknesses:**  
+- Computationally intensive.  
+- Sensitive to hyperparameter choices.
+
+**Hyperparameters Tuned:**  
+- `n_estimators`, `learning_rate`
+
+---
+
+### XGBoostRegressor
+**Strengths:**  
+- Highly efficient and scalable.  
+- In-built regularization for preventing overfitting.
+
+**Weaknesses:**  
+- Complexity in tuning hyperparameters.
+
+**Hyperparameters Tuned:**  
+- `n_estimators`, `learning_rate`
+
+---
+
+### Approach
+- For each model, we wrapped it in a pipeline with a `StandardScaler` and performed hyperparameter tuning using `GridSearchCV`.  
+- We then combined the best models into a `VotingRegressor` ensemble to leverage their combined predictive power.  
+- Hyperparameter tuning was conducted on all models using grid search with a 5-fold cross-validation to identify the best combination of parameters.  
+
+### Results
+By combining feature engineering, ensemble modeling, and cross-validation, we achieved a strong **R² score (~0.5)**. This score represents how closely the model predictions align with the actual values.
 
 # Visualizations of Data
 <img src="https://github.com/anahitajoshi/cs506-final-project/blob/main/data_visualizations/1.png?raw=true" width="400" />
