@@ -219,6 +219,10 @@ The GitHub workflow (`python-tests.yml`) automates the testing process to ensure
 
 # Data Collection, Processing, and Modeling 
 
+## Collection
+
+For our preliminary data collection, we have focused on scraping Twitter using Selenium for specific movies. We are using a WebDriver to automate scrolling on the Twitter webpage. The “Tweet” information we are gathering includes username, handle, the actual tweet content, hashtags, mentions, the tweet link, etc. that we can use later. All of this information from one Tweet will be gathered in a CSV file with the other tweets we searched for. In the next part of the code, we define the main scraping process through the Twitter_Scraper class. This class handles setting up a WebDriver, logging in to Twitter, navigating to specific tweet feeds, and gathering data based on parameters like username, hashtag, or query. It also includes error-handling methods for login steps, like inputting the username and password, and managing any unusual activity prompts from Twitter. After configuring an instance of Twitter_Scraper with login credentials and parameters such as date range and the search query "Extraction 2," the scraper logs in, navigates to Twitter's search results, and starts collecting tweets that match our criteria. Each tweet’s details, including content, likes, retweets, and timestamp, are stored as data points. Finally, the save_to_csv function structures the collected tweets into a CSV file, including columns for engagement metrics and tweet metadata. This CSV file serves as a dataset for further analysis, providing an organized snapshot of Twitter’s response to specific search terms or hashtags. The bom_scraper file collects the theater release data needed by fetching it from the OMDb API such as the lifetime revenue, budget and rating and then appends this information to the original csv found on the dataset found on kaggle titled “Opening Weekend Box Office Performance”. It then cleans up the data by keeping only the relevant columns and saves the updated csv.
+
 ## Twitter Data:
 For our preliminary data collection, we focused on scraping Twitter using Selenium for specific movies. We used a WebDriver to automate scrolling on the Twitter webpage. The "Tweet" information gathered includes:
 
@@ -248,10 +252,6 @@ We collected theater release data using the OMDb API via a `bom_scraper.py` scri
 1. **Initial Dataset:** Enriched the Kaggle dataset "Opening Weekend Box Office Performance" with additional columns such as lifetime revenue, budget, and rating.
 2. **Cleaned Data:** Kept only relevant columns for analysis and saved the updated CSV as `historical_movies.csv`.
 
----
-
-# Historical Data
-
 ## Box Office and Movie Metadata:
 We used the `data/historical_movies.csv` dataset, containing:
 
@@ -269,8 +269,6 @@ The Twitter scraper (`twitter-scraper` directory) collected tweets about target 
 - Logging into Twitter and collecting tweets by query, hashtag, or username.
 - Using the `vaderSentiment` library to compute a sentiment score for each tweet.
 - Aggregating an average sentiment score for all tweets to represent public reaction to the movie.
-
----
 
 # Data Cleaning & Feature Engineering
 
@@ -291,8 +289,6 @@ The Twitter scraper (`twitter-scraper` directory) collected tweets about target 
 
 ### Sentiment Analysis:
 We switched from `TextBlob` to `VADER` for better performance on social media data. VADER provides granular sentiment scoring, especially for nuanced or sarcastic tweets, making it ideal for this dataset.
-
----
 
 # Modeling
 
@@ -339,8 +335,6 @@ We switched from `TextBlob` to `VADER` for better performance on social media da
 
 ### Outcome:
 Achieved a strong R² score (~0.5), indicating that the model explains a significant portion of variance in revenue outcomes.
-
----
 
 # Saving the Model and Features
 
