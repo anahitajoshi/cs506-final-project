@@ -1,4 +1,4 @@
-# CS 506 Final Project
+# BOXO - Box Office Prediction using Sentiment Analysis
 Edaad Azman, Jason Anghad, Anahita Joshi, Pavana Manoj, Zac Lan
 
 # Project Overview 
